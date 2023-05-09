@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>SEMA</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+  <link rel="stylesheet" href="main.css">
+
+  <!-- Socket.io -->
+  <script src="https://cdn.socket.io/4.3.2/socket.io.min.js" integrity="sha384-KyCxbrCyB0oWfNm8JcO8qG3gjtcKFtsBq8mRHWdzoe2VEyQvqCjWm8O+gHP0Vs6t" crossorigin="anonymous"></script>
+
+  <!-- Bootstrap Links -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/hikvision-api@1.2.2/dist/hikvision-api.min.js"></script>
+  
+  <!-- Video.js -->
+  <link href="https://vjs.zencdn.net/7.10.2/video-js.css" rel="stylesheet">
+  <script src="https://vjs.zencdn.net/7.10.2/video.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/videojs-contrib-hls@5.15.0/dist/videojs-contrib-hls.min.js"></script>
+  
+  <!-- WebRTC Adapter -->
+  <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+</head>
+
+<body>
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top">
+    <div class="container d-flex align-items-center justify-content-lg-between">
+      <h1 class="logo me-auto me-lg-0">
+        <a href="index.html">SEMA<span>.</span></a>
+      </h1>
+      <nav id="navbar" class="navbar order-last order-lg-0">
+        <ul>
+          <li><a class="nav-link scrollto active" href="index.html">Home</a></li>
+          <li><a class="nav-link scrollto" href="#about">About</a></li>
+          <li><a class="nav-link scrollto" href="#services">Services</a></li>
+          <li><a class="nav-link scrollto" href="dashboard.html">Dashboard</a></li>
+          <li><a class="nav-link scrollto" href="#team">Team</a></li>
+          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav>
+      <a href="dashboard.html" class="get-started-btn scrollto">Get Started</a>
+    </div>
+  </header>
+  <!-- End Header -->
+
+  <main>
+    <div class="wrapper mt-5">
+      <div class="dashboard-container mt-5">
+        <h1 class="dashboard-title">Controls</h1>
+        <div class='streaming-link-container'>
+          <p class='streaming-link-paragraph'>Insert Link</p>
+          <input class='streaming-link-input' id='rtsp-url'>
+
+          <div class='container action-bar-buttons-container streaming-link-buttons-container'>
+            <div class="row">
+              <div class="btn-group" role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-outline-secondary action-bar-button" id="start-stream" onclick="startVideo()">Start</button>
+                <button type="button" class="btn btn-outline-secondary action-bar-button" id="stop-stream" onclick="stopVideo()">Stop</button>
+                
+              </div>
+              <div class="popup" id="errorPopup">
+                <span class="popuptext">Please check your camera connection and try again.</span>
+              </div>
+            </div>
+            <div class="btn-group" role="group" aria-label="Basic example">
+              <button type="button" class="btn btn-outline-secondary action-bar-button">Alert Log</button>
+              <button type="button" class="btn btn-outline-secondary action-bar-button">Analytics</button>
+            </div>
+            <div class="btn-group" role="group" aria-label="Basic example">
+              <button type="button" class="btn btn-outline-secondary action-bar-button">Settings</button>
+              <button type="button" class="btn btn-outline-secondary action-bar-button">Help</button>
+            </div>
+          </div>
+          <div class="btn-group mt-5">
+            <button type="button" class="btn btn-secondary" data-toggle="button" id="happy-btn">Happy</button>
+            <button type="button" class="btn btn-secondary" data-toggle="button" id="sad-btn">Sad</button>
+            <button type="button" class="btn btn-secondary" data-toggle="button" id="angry-btn">Angry</button>
+            <button type="button" class="btn btn-secondary" data-toggle="button" id="neutral-btn">Neutral</button>
+          </div>
+
+          <div class="container" style="border: 5px solid #505050; width: 90%;">
+            <div class="row">
+              <div class="col-sm-12 col-md-6">
+                <h2>People Count</h2>
+                <h4>Current Count: <span class="badge badge-primary" id="count-badge">0</span></h4>
+                <button type="button" class="btn btn-secondary" onclick="enter()">Enter</button>
+                <button type="button" class="btn btn-secondary" onclick="exit()">Exit</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="video-container mt-5">
+        <h2 class="video-container-title">Video Stream</h2>
+        <p class="action-bar-description">
+          Watch the real-time stream or continue with your stuff. Our system will alert you when we need your intervention
+        </p>
+
+        <p class="video-empty-message">You are not currently transmitting.</p>
+        <!--<p class="video-mobile-incompatibility-message">
+          Does not work on certain mobile browsers.
+        </p>
+        -->
+        <img id="video" class="main-stream-video" width="640" height="auto" />
+
+      </div>
+    </div>
+  </main>
+
+  <!-- partial -->
+  <script src="script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
+
+</body>
+</html>
