@@ -1,29 +1,35 @@
 * {
   margin: 0;
   padding: 0;
-  scroll-behavior: smooth;
+  box-sizing: border-box;
   font-size: 62.5%;
+  transition: all 0.3s ease-out;
 }
 
 body {
   margin: 0;
   padding: 0;
-  background-image: url("assets/background.jpg");
-  background-size: cover;
+  background: linear-gradient(to right, #262a2b, #3d3d3d);
+  font-family: 'Roboto', sans-serif;
+  color: #e3e3e3;
 }
+.logo img {
+  width: 90px;
+  height: auto;
+}
+@media (min-width: 768px) {
+  .logo img {
+    width: 100px;
+  }
+}
+
 
 .page-title {
-  font-family: "Roboto";
   font-weight: 900;
   font-size: 3rem;
-  color: #e3e3e3;
   text-align: center;
-  background-color: darkslategray;
   padding: 15px;
-}
-
-button {
-  border: none;
+  background: linear-gradient(to right, #ff9900, #3d3d3d);
 }
 
 .wrapper {
@@ -40,50 +46,29 @@ button {
 .dashboard-container {
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
   text-align: center;
   gap: 2rem;
   width: 30%;
   max-width: 100rem;
-  background-color: #666666;
-  border: 5px solid #505050;
+  background: linear-gradient(to right, #262a2b, #3d3d3d);
+  border: 5px solid #ff9900;
   border-radius: 0.5rem;
   padding: 2rem 3rem;
 }
 
 .dashboard-title {
-  font-family: "Roboto";
   font-weight: 900;
   font-size: 3rem;
-  color: #e3e3e3;
+  color: #ff9900;
   align-self: center;
 }
 
-.dashboard-discription-paragraph {
-  font-family: "Roboto";
-  font-size: 1.5rem;
-  font-weight: 500;
-  background-color: #131313;
-  color: #e3e3e3;
-}
-
 .action-bar-description {
-  font-family: "Roboto";
   font-weight: 500;
   font-size: 1.6rem;
-  color: #e3e3e3;
-}
-
-.action-bar-buttons-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 1.5rem;
 }
 
 .streaming-link-container {
-  font-family: "Roboto";
   font-weight: 500;
   font-size: 4rem;
   color: #e3e3e3;
@@ -91,85 +76,114 @@ button {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin-bottom: auto;
 }
 
-.streaming-link-paragraph {
-  font-weight: 500;
-  font-size: 2rem;
-}
-
-.streaming-link-input:focus {
-  outline: none;
+.action-bar-description {
+  color: #e3e3e3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .streaming-link-input {
   width: 100%;
-  height: 100%;
+  height: 70%;
   background: rgba(196, 196, 196, 0.2);
   border-radius: 8px;
   border: 1px solid rgba(255, 255, 255, 0.5);
   color: white;
   padding: 0 20px;
+  margin-bottom: 1rem;  /* add a bottom margin */
+
 }
 
-.streaming-link-buttons-container {
-  margin-top: 30px;
+.action-bar-buttons-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around; 
+  flex-wrap: wrap;
+  padding: 2rem;
 }
-
-.dashboard-discription {
-  width: 26rem;
-  height: 6.3rem;
-  background-color: #e3e3e3;
-  border-radius: 0.4rem;
-  font-family: "Roboto";
-  font-weight: 700;
-  font-size: 1.5rem;
-  color: #454590;
-  transition: 0.9s all;
+.btn-group {
+  margin-bottom: 1rem;
 }
 
 .action-bar-button {
   width: 10rem;
   height: 4.3rem;
   background-color: #ff9900;
-  border-radius: 0.4rem;
-  font-family: "Roboto";
+  border-color: #ff6600;
+  color: #fff;
   font-weight: 700;
   font-size: 1.5rem;
-  color: #ff9900;
   cursor: pointer;
-  transition: 0.9s all;
+  transition: 0.3s all;
+  margin: 0.5rem;
 }
 
-.action-bar-button:hover {
+
+.action-bar-button:hover, .action-bar-button:focus {
   background-color: #ff9900;
+  color: #fff;
+  transform: scale(1.05);
+  outline: none;
 }
 
-/* Add the new popup styles here */
 .popup {
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: none;
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+}
+
+.popup .popuptext {
+  visibility: hidden;
+  width: 160px;
   background-color: #555;
   color: #fff;
   text-align: center;
   border-radius: 6px;
-  padding: 8px;
-  z-index: 1000;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 100%;  /* Place the popup under the button */
+  left: 50%;
+  margin-left: -80px; /* Use half of the width value to center the popup */
+  opacity: 0;
+  transition: opacity 0.3s;
 }
 
-.popup.show {
-  display: block;
-  animation: fadeIn 1s;
+.popup:hover .popuptext {
+  visibility: visible;
+  opacity: 1;
 }
 
-@keyframes fadeIn {
-  from {opacity: 0;}
-  to {opacity: 1;}
+#people-count-chart {
+  height: 300px;
+  margin-bottom: 1rem;
+}
+
+button {
+  margin-top: 1rem;
+  font-size: 1.5rem;
+  padding: 0.5rem 1rem;
+  background: #ff9900;
+  border: none;
+  color: #fff;
+}
+
+button:hover {
+  background-color: #ff6600;
+  color: #fff;
+}
+
+.video-container-title {
+  font-weight: 900;
+  font-size: 3rem;
+  color: #ff9900;
+  align-self: center;
 }
 
 .video-container {
@@ -180,126 +194,73 @@ button {
   text-align: center;
   width: 65%;
   max-width: 100rem;
-  background-color: #666666;
-  border: 5px solid #505050;
+  background: linear-gradient(to right, #262a2b, #3d3d3d);
+  border: 5px solid #ff9900;
   border-radius: 0.5rem;
   padding: 2rem 3rem;
-}
-
-.video-container-title {
-  position: relative;
-  font-family: "Roboto";
-  font-weight: bold;
-  font-size: 3rem;
-  color: #ffffff;
-  margin-bottom: 4rem;
-}
-
-.video-empty-message {
-  position: absolute;
-  font-family: "Roboto";
-  font-weight: 500;
-  font-size: 1.8rem;
-  color: #999999;
-  z-index: 0;
-}
-
-.video-mobile-incompatibility-message {
-  position: absolute;
-  margin-top: 6rem;
-  font-family: "Roboto";
-  font-weight: 500;
-  font-size: 1.8rem;
-  color: #999999;
-  z-index: 0;
 }
 
 .main-stream-video {
   width: 100%;
   height: 100%;
   object-fit: fill;
-  border: 5px solid #505050;
+  border: 5px solid #ff9900;
   border-radius: 0.5rem;
   z-index: 1;
   image-rendering: pixelated;
 }
 
-@media screen and (max-width: 600px) {
-  .wrapper {
-    align-items: center;
-    flex-direction: column;
-  }
-
-  .dashboard-container {
-    display: flex;
-    flex-direction: column;
-    align-self: center;
-    gap: 2rem;
-    min-width: 80vw;
-    max-width: 100rem;
-    background-color: #131313;
-    
-  }
-
-  .action-bar-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    width: 65%;
-    height: 10rem;
-  }
-
-  .action-bar-description {
-    font-size: 1rem;
-  }
-  .action-bar-buttons-container{
-    border: 5px solid #505050;
-
-
-  }
-
-  .video-container {
-    width: 90vw;
-    max-width: 100rem;
-  }
-
-  .video-empty-message {
-    font-size: 1.4rem;
-  }
-
-  .video-mobile-incompatibility-message {
-    font-size: 1.15rem;
-  }
+/* Add styles for the footer */
+#footer {
+  background-color: #131313;
+  padding: 20px 0;
+  color: #e3e3e3;
+  text-align: center;
+  font-size: 1.6rem;
 }
 
-/*Smaller than 500*/
-@media screen and (max-width: 480px) {
-  .wrapper {
-    align-items: center;
-    flex-direction: column;
-  }
+#footer p {
+  margin: 0;
+}
 
-  .action-bar-title {
-    font-size: 1rem;
-  }
+/* Styles for People Counting Section */
 
-  .action-bar-description {
-    font-size: 1rem;
-  }
+.people-counting-title {
+  font-weight: 900;
+  font-size: 3rem;
+  text-align: center;
+  color: #ff9900;
+  padding: 1rem 0;
+  margin-top: 1rem;  /* add a top margin */
 
-  .action-bar-button {
-    font-size: 1rem;
-    font-weight: 300;
-  }
+}
 
-  .dashboard-container {
-    display: flex;
-    flex-direction: column;
-    align-self: center;
-    gap: 2rem;
-    width: 80vw;
-    max-width: 100rem;
-    background-color: #131313;
-    justify-content: space-between;
-  }
+
+.people-counting-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  max-width: 100rem;
+  background: linear-gradient(to right, #262a2b, #3d3d3d);
+  border: 5px solid #ff9900;
+  border-radius: 0.5rem;
+  padding: 2rem 3rem;
+  
+}
+
+
+.people-counting-title {
+  font-weight: 900;
+  font-size: 3rem;
+  color: #ff9900;
+  align-self: center;
+}
+
+.people-counting-chart {
+  width: 100%;
+  height: 300px;
+  margin-bottom: 1rem;
 }

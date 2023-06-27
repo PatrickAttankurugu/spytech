@@ -41,7 +41,7 @@
   <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center justify-content-lg-between">
       <h1 class="logo me-auto me-lg-0">
-        <a href="index.html">SEMA<span>.</span></a>
+        <a href="index.html"><img src="assets/sema.png" alt="SEMA Logo"></a>
       </h1>
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
@@ -87,23 +87,34 @@
               <button type="button" class="btn btn-outline-secondary action-bar-button">Help</button>
             </div>
           </div>
-          <div class="btn-group mt-5">
-            <button type="button" class="btn btn-secondary" data-toggle="button" id="happy-btn">Happy</button>
-            <button type="button" class="btn btn-secondary" data-toggle="button" id="sad-btn">Sad</button>
-            <button type="button" class="btn btn-secondary" data-toggle="button" id="angry-btn">Angry</button>
-            <button type="button" class="btn btn-secondary" data-toggle="button" id="neutral-btn">Neutral</button>
+        
+
+          <div class="people-counting-title">
+            People Counting
           </div>
 
-          <div class="container" style="border: 5px solid #505050; width: 90%;">
+          <div class="people-counting-container">
             <div class="row">
-              <div class="col-sm-12 col-md-6">
-                <h2>People Count</h2>
-                <h4>Current Count: <span class="badge badge-primary" id="count-badge">0</span></h4>
-                <button type="button" class="btn btn-secondary" onclick="enter()">Enter</button>
-                <button type="button" class="btn btn-secondary" onclick="exit()">Exit</button>
-              </div>
+                <!-- People entering section -->
+                <div class="col-sm-12 col-md-4">
+                    <h2>People Entering</h2>
+                    <h4>Ins: <span class="badge badge-primary" id="ins-badge">0</span></h4>
+                </div>
+        
+                <!-- People exiting section -->
+                <div class="col-sm-12 col-md-4">
+                    <h2>People Exiting</h2>
+                    <h4>Outs: <span class="badge badge-primary" id="outs-badge">0</span></h4>
+                </div>
+        
+                <!-- Current count section -->
+                <div class="col-sm-12 col-md-4">
+                    <h2>Current Count</h2>
+                    <h4>Current: <span class="badge badge-primary" id="count-badge">0</span></h4>
+                </div>
             </div>
-          </div>
+        </div>
+        
         </div>
       </div>
 
@@ -118,7 +129,7 @@
           Does not work on certain mobile browsers.
         </p>
         -->
-        <img id="video" class="main-stream-video" width="640" height="auto" />
+        <img id="video" class="main-stream-video" width="640" height="480" />
 
       </div>
     </div>

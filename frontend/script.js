@@ -67,7 +67,7 @@ async function stopStream() {
 
 // Event listeners for the buttons
 startStreamButton.addEventListener("click", startVideo);
-stopStreamButton.addEventListener("click", stopStream);
+stopStreamButton.addEventListener("click", stopVideo);
 
 // Initialize the WebSocket connection
 initWebSocket();
